@@ -61,7 +61,6 @@ function M.config()
     { "<leader>laa", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action", mode = "v" },
   }
 
-  local lspconfig = require "lspconfig"
   local icons = require "user.icons"
 
   local servers = {
@@ -70,7 +69,6 @@ function M.config()
     "html",
     "ts_ls",
     "eslint",
-    "ts_ls",
     "pyright",
     "bashls",
     "jsonls",
@@ -109,7 +107,6 @@ function M.config()
 
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
-  require("lspconfig.ui.windows").default_options.border = "rounded"
 
   for _, server in pairs(servers) do
     local opts = {
@@ -126,8 +123,10 @@ function M.config()
       require("neodev").setup {}
     end
 
-    lspconfig[server].setup(opts)
+    vim.lsp.config(server, opts)
   end
+
+  vim.lsp.enable(servers)
 end
 
 return M
