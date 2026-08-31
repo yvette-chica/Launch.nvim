@@ -31,6 +31,9 @@ require "user.lazy"
 vim.opt.tabstop = 4  -- A TAB character looks like 4 spaces 
 vim.opt.expandtab = true  -- Pressing the TAB key will insert spaces instead of a TAB character 
 vim.opt.shiftwidth = 4  -- Number of spaces inserted when indenting
+vim.opt.breakindent = true
+vim.opt.wrap = true
+vim.opt.linebreak = true
 
 vim.o.updatetime = 250
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
